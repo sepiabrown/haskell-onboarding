@@ -1,0 +1,20 @@
+run = "bash --init-file <(echo \"./ghci_wrapper.sh; . ~/.bashrc; eval '$(direnv hook bash)'; direnv allow\")"
+
+entrypoint = "Main.hs"
+
+hidden = [".ghci", "ghci_wrapper.sh"]
+
+[nix]
+channel = "stable-22_11"
+
+[interpreter]
+command = "bash --init-file <(echo \"./ghci_wrapper.sh; . ~/.bashrc; eval '$(direnv hook bash)'; direnv allow\")"
+
+[languages.haskell]
+pattern = "**/*.hs"
+
+[languages.haskell.languageServer]
+start = ["haskell-language-server", "--lsp"]
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix", ".ghci"]
